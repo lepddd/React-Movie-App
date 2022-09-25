@@ -61,9 +61,9 @@ const Banner = () => {
   const [movie, setMovie] = useState("");
 
   const url =
-    "https://api.themoviedb.org/3/movie/upcoming?api_key=<<Key>>&language=en-US&page=1"; //colorcar no heroku
+    "https://api.themoviedb.org/3/movie/upcoming?api_key=183f9e8b57c733b82d3f05b4e96c4398&language=en-US&page=1"; //colorcar no heroku
 
-  useEffect(() => {
+ /*  useEffect(() => {
     async function fetchUpcoming(url) {
       const res = await axios.get(url);
       try {
@@ -75,23 +75,24 @@ const Banner = () => {
       }
     }
     fetchUpcoming(url);
-  }, []);
+  }, []); */
 
   return (
     <StyledBanner
-      backdrop={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+      backdrop={`https://image.tmdb.org/t/p/original/2RSirqZG949GuRwN38MYCIGG4Od.jpg`}/* ${movie.backdrop_path} */
     >
       <UpcomingContainer>
-        <CardMovie posterPath={"/spCAxD99U1A6jsiePFoqdEcY0dG.jpg"} />
+        <CardMovie posterPath={"/spCAxD99U1A6jsiePFoqdEcY0dG.jpg"} /> {/* {movie.poster_path} */ }
         <MovieInfo>
-          <MovieTitle>
-            {movie.title}
+          <MovieTitle>{/* {movie.title} */}
+          Fall            
             <MovieVote>
               <Icon icon="bxs:star" color="#fbbf24" width="18" height="18" />
-              {movie.vote_average}
+              7.4
+              {/* {movie.vote_average} */}
             </MovieVote>
           </MovieTitle>
-          <MovieDesc>{movie.overview}</MovieDesc>
+          <MovieDesc>For best friends Becky and Hunter, life is all about conquering fears and pushing limits. But after they climb 2,000 feet to the top of a remote, abandoned radio tower, they find themselves stranded with no way down. Now Becky and Hunter’s expert climbing skills will be put to the ultimate test as they desperately fight to survive the elements, a lack of supplies, and vertigo-inducing heights</MovieDesc> {/* {movie.overview} */}
         </MovieInfo>
       </UpcomingContainer>
     </StyledBanner>
