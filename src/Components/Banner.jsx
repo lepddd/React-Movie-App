@@ -12,9 +12,12 @@ const StyledBanner = styled.div`
   background-image: url(${(props) => props.backdrop});
   background-repeat: no-repeat;
   background-size: cover;
+  
 `;
 
 const UpcomingContainer = styled.div`
+padding: 20px;
+position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,6 +25,9 @@ const UpcomingContainer = styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(180deg, rgba(23, 23, 23, 0.6) 0%, #171717 100%);
+  @media (max-width: 500px){
+    flex-direction: column;
+  }
 `;
 
 const MovieInfo = styled.div`
@@ -30,6 +36,10 @@ const MovieInfo = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
+  @media (max-width: 500px){
+    width: 100%;
+    align-items: center;
+    }
 `;
 
 const MovieTitle = styled.div`
@@ -39,12 +49,18 @@ const MovieTitle = styled.div`
   font-weight: 700;
   font-size: 32px;
   line-height: 38px;
+  @media (max-width: 500px){
+    gap: 30px;
+  }
 `;
 
 const MovieDesc = styled.p`
   font-size: 16px;
   line-height: 19px;
   color: #f4f4f4;
+  @media (max-width: 500px){
+    display: none;
+  }
 `;
 
 const MovieVote = styled.div`

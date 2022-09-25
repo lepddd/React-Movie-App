@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import React from "react";
 
 const StyleCardMovie = styled.div`
   position: relative;
-  width: 134px;
-  height: 200px;
+  min-width: 134px;
+  min-height: 200px;
   background-image: url(${(props) => props.img});
   background-repeat: no-repeat;
   background-size: contain;
@@ -11,7 +12,7 @@ const StyleCardMovie = styled.div`
   cursor: pointer;
 `;
 const VoteAvg = styled.p`
-padding-right: 10px;
+  padding-right: 10px;
   position: absolute;
   display: flex;
   justify-content: end;
@@ -30,4 +31,3 @@ const CardMovie = ({ posterPath, avg }) => {
   );
 };
 export default CardMovie;
-/*  */

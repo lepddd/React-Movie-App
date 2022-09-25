@@ -3,15 +3,20 @@ import axios from "axios";
 import { useEffect, useReducer } from "react";
 import CardMovie from "./CardMovie";
 import { INITIAL_VALUES, movieReducer } from "../movieReducer";
+import loading from "/loading.svg";
 
 const Container = styled.div`
   max-width: 750px;
   margin: 40px auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const Box = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
 `;
 
@@ -21,6 +26,7 @@ const Title = styled.p`
   line-height: 24px;
   color: #f4f4f4;
   margin-bottom: 20px;
+  align-self: flex-start;
 `;
 
 const MoreBtn = styled.a`
@@ -32,16 +38,16 @@ const MoreBtn = styled.a`
   padding: 10px;
   font-size: 14px;
   font-weight: 700;
-  margin: 20px auto 0 auto;
+  margin-top: 20px;
   border-radius: 4px;
 `;
-/* https://api.themoviedb.org/3/movie/upcoming?api_key=183f9e8b57c733b82d3f05b4e96c4398&language=en-US&page=1
-https://api.themoviedb.org/3/movie/top_rated?api_key=183f9e8b57c733b82d3f05b4e96c4398&language=en-US&page=1 */
+/* https://api.themoviedb.org/3/movie/upcoming?api_key=<<key>>&language=en-US&page=1
+https://api.themoviedb.org/3/movie/top_rated?api_key=<<key>>&language=en-US&page=1 */
 
 const MoviesContainer = ({ title, endpoint, qtn, link }) => {
-  const [state, dispatch] = useReducer(movieReducer, INITIAL_VALUES);
+  const [state, dispatch] = useReducer(movieReducer, INITIAL_VALUES);  
 
-  const url = `https://api.themoviedb.org/3/movie/${endpoint}?api_key=183f9e8b57c733b82d3f05b4e96c4398&language=en-US&page=1`;
+  const url = `https://api.themoviedb.org/3/movie/${endpoint}?api_key=<<key>>&language=en-US&page=1`;
 
   useEffect(() => {
     async function getData(url) {
@@ -62,7 +68,7 @@ const MoviesContainer = ({ title, endpoint, qtn, link }) => {
     <Container>
       <Title>{title}</Title>
       {Object.keys(state.movies).length === 0 ? (
-        <p>Loading...</p>
+        <img src={loading} alt="loading" />
       ) : (
         <Box>
           {state.movies.map((movie, index) => (
@@ -80,3 +86,4 @@ const MoviesContainer = ({ title, endpoint, qtn, link }) => {
 };
 
 export default MoviesContainer;
+/* Object.keys(state.movies).length === 0 */

@@ -12,8 +12,12 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-body {
+html,body {
   background-color: #171717;
-  min-width: 320px;
   min-height: 100vh;
+  min-width: 100%;
+}
+#root{
+  background-color: red;
+  min-width: 100%;
 }
