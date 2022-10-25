@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LINK_IMAGES } from "../../linkImages";
+import notfound from '../../assets/img/notfound320x160.png'
 
 const BoxContainer = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const BoxContainer = styled.div`
 
 const MovieImg = styled(Link).attrs(({ image }) => ({
   style: {
-    backgroundImage: `url( ${LINK_IMAGES.W500 +image}  )`,
+    backgroundImage: `url( ${image}  )`,
   },
 }))`
   width: 320px;
@@ -41,9 +42,13 @@ const MovieVote = styled.p`
 `;
 
 const RecommendationCard = ({ movie }) => {
+  const image = movie.backdrop_path
+    ? LINK_IMAGES.W500 + movie.backdrop_path
+    : notfound;
+
   return (
     <BoxContainer>
-      <MovieImg image={movie.backdrop_path} to={`/id/${movie.id}`} />
+      <MovieImg image={image} to={`/id/${movie.id}`} />
       <BoxDetails>
         <MovieName>{movie.title}</MovieName>
         <MovieVote>{`${(movie.vote_average * 10).toFixed(0)}%`}</MovieVote>

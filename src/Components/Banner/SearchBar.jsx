@@ -65,20 +65,19 @@ const SearchBar = () => {
   const [state, dispatch] = useReducer(movieReducer, INITIAL_STATES);
 
   function changeInput(e) {
-    console.log(e.target.value);
-    setInput((prevState) => (prevState = e.target.value));
+    setInput((prevState) => e.target.value);
   }
 
   function SearchMovie() {
-
-    const searchMovie = input
-      .replace(":", "")
-      .toLowerCase()
-      .split(" ")
-      .join("+");
+    if (input) {
+      const searchMovie = input
+        .replace(":", "")
+        .toLowerCase()
+        .split(" ")
+        .join("+");
 
       navigate(`/search/${searchMovie}`);
-    
+    }
   }
 
   return (

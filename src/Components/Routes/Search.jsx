@@ -4,6 +4,9 @@ import axios from "axios";
 import MovieCard from "../Card/MovieCard";
 import Header from "../Header/Header";
 import Footer from "../Footer";
+import Container from "../Container";
+import BoxTitle from "../BoxTitle";
+import GradientBox from "../GradientBox";
 const Search = () => {
   const [movies, setMovies] = useState([]);
   const params = useParams();
@@ -24,15 +27,20 @@ const Search = () => {
   return (
     <>
       <Header />
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          title={movie.title}
-          vote={movie.vote_average}
-          id={movie.id}
-          poster={movie.poster_path}
-        />
-      ))}
+      <Container>
+      <BoxTitle title={'Results'} />
+      <GradientBox>
+        {movies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            poster={movie.poster_path}
+            vote={movie.vote_average}
+            id={movie.id}
+            title={movie.title}
+          />
+        ))}
+      </GradientBox>
+    </Container>
       <Footer />
     </>
   );
