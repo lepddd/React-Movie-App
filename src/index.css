@@ -1,10 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
-*{
+@import url('https://fonts.googleapis.com/css2?family=Ruda:wght@400;500;600;700;800&display=swap');
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Rubik;
+  font-family: Ruda;
 }
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -12,12 +14,16 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-html,body {
-  background-color: #171717;
-  min-height: 100vh;
+
+html, body {
+  background-color: #EFF6FF;
+  min-height: 100%;
   min-width: 100%;
 }
-#root{
-  background-color: red;
+body{
+  /* padding: 0 5px; */
+}
+
+#root {
   min-width: 100%;
 }

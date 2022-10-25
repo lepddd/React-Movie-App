@@ -1,30 +1,19 @@
-import HeaderBar from "../HeaderBar";
-import Banner from "../Banner";
-import MoviesContainer from "../MoviesContainer";
+import Header from "../Header/Header";
+import Banner from "../Banner/Banner";
+import GetMovies from "../GetMovies";
+import TrendingContainer from "../Trending/TrendingContainer";
+import Footer from "../Footer";
+
 
 export const Home = () => {
   return (
     <>
-      <HeaderBar />
+      <Header />
       <Banner />
-      <MoviesContainer
-        endpoint={"upcoming"}
-        qtn={5}
-        title={"Upcoming"}
-        link={"upcoming"}
-      />
-      <MoviesContainer
-        endpoint={"top_rated"}
-        qtn={10}
-        title={"Top Rated"}
-        link={"top_rated"}
-      />
-      <MoviesContainer
-        endpoint={"popular"}
-        qtn={10}
-        title={"Most Popular"}
-        link={"popular"}
-      />
+      <GetMovies title={'Popular'}/>   
+      <GetMovies title={'Top Rated'}/>   
+      <TrendingContainer />
+      <Footer title={'RMovies'}/>
     </>
   );
 };
