@@ -1,11 +1,10 @@
 import Container from "./Container";
-import BoxTitle from "./BoxTitle";
+import BoxTitle from "./BoxTitle/BoxTitle";
 import GradientBox from "./GradientBox";
 import CastCard from "./Card/CastCard";
-import axios from "axios";
 import MovieDetails from "./MovieDetails";
-import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { fetchData } from "../fetchData";
 
 const Box = styled.div`
   display: flex;
@@ -14,32 +13,18 @@ const Box = styled.div`
   gap: 12px;
 `;
 
-const GetSimilar = ({ movieId, movie }) => {
-  const [cast, setCast] = useState([]);
+const GetSimilar = ({ movie, movieId }) => {
+  const url = `https://app-teste-weather.herokuapp.com/movie/cast/id?movieid=${movieId}`;
 
-  useEffect(() => {
-    function getCastById() {
-      const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=183f9e8b57c733b82d3f05b4e96c4398&language=en-US`;
-      axios
-        .get(url)
-        .then((res) => {
-          setCast((prevState) => (prevState = res.data.cast));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-
-    getCastById();
-  }, []);
+  const { loading, error, data } = fetchData(url);
 
   return (
     <Box>
       <Container>
         <BoxTitle title={"Casting"} />
         <GradientBox>
-          {cast.map((char) => (
-            <CastCard key={char.id} cast={char} />
+          {data.cast?.map((cast) => (
+            <CastCard key={cast.id} cast={cast} />
           ))}
         </GradientBox>
       </Container>

@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import MovieCard from "../Card/MovieCard";
 import Header from "../Header/Header";
-import Footer from "../Footer";
+import Footer from "../Footer/Footer";
 import Container from "../Container";
-import BoxTitle from "../BoxTitle";
+import BoxTitle from "../BoxTitle/BoxTitle";
 import GradientBox from "../GradientBox";
 const Search = () => {
   const [movies, setMovies] = useState([]);

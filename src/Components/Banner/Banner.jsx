@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from "react";
-import { INITIAL_STATES, movieReducer } from "../../useMovies";
+import { INITIAL_STATES, dataReducer } from "../../useMovies";
 import { ACTION_TYPES } from "../../movieActionTypes";
 import { LINK_IMAGES } from "../../linkImages";
 import styled from "styled-components";
@@ -42,11 +42,11 @@ const TitleBanner = styled.div`
 `;
 
 const Banner = () => {
-  const [state, dispatch] = useReducer(movieReducer, INITIAL_STATES);
+  const [state, dispatch] = useReducer(dataReducer, INITIAL_STATES);
 
   const titleBanner = "Welcome.";  
 
-  const fetchUrl = `https://hide-heroku-api.herokuapp.com/movie/popular`;
+  const fetchUrl = `https://app-teste-weather.herokuapp.com/movie/popular`;
 
   const randomNumber = (length) => {
     return Math.floor(Math.random() * length);
@@ -83,24 +83,20 @@ const Banner = () => {
     };
   }, []);
 
-  return (
-    <>
-      {state.loading ? (
-        <ImgBanner>
-          <BackdropBanner>
-            <TitleBanner>{titleBanner}</TitleBanner>
-            <SearchBar />
-          </BackdropBanner>
-        </ImgBanner>
-      ) : (
-        <ImgBanner image={state.movies.backdrop_path}>
-          <BackdropBanner>
-            <TitleBanner>{titleBanner}</TitleBanner>
-            <SearchBar />
-          </BackdropBanner>
-        </ImgBanner>
-      )}
-    </>
+  return state.loading ? (
+    <ImgBanner>
+      <BackdropBanner>
+        <TitleBanner>{titleBanner}</TitleBanner>
+        <SearchBar />
+      </BackdropBanner>
+    </ImgBanner>
+  ) : (
+    <ImgBanner image={state.data?.backdrop_path}>
+      <BackdropBanner>
+        <TitleBanner>{titleBanner}</TitleBanner>
+        <SearchBar />
+      </BackdropBanner>
+    </ImgBanner>
   );
 };
 

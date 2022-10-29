@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import { ACTION_TYPES } from "../../movieActionTypes";
-import { movieReducer, INITIAL_STATES } from "../../useMovies";
-import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useState, useReducer } from "react";
+import { useState} from "react";
 
 const InputContainer = styled.div`
   display: flex;
@@ -23,7 +20,7 @@ const InputContainer = styled.div`
   }
 `;
 const SearchBtn = styled(motion.button)`
-  background: #adb5bd;
+  background-image: linear-gradient(90deg, #6C757D  0%, #A3A3A3 100%);
   border-radius: 99px;
   height: 36px;
   width: 100%;
@@ -45,6 +42,7 @@ const StyledInput = styled.input`
   width: 100%;
   font-weight: 400;
   background-color: #f4f4f4;
+  
   outline: none;
   border: none;
   padding: 0 30px;
@@ -61,8 +59,6 @@ const SearchBar = () => {
   const navigate = useNavigate();
 
   const [input, setInput] = useState("");
-
-  const [state, dispatch] = useReducer(movieReducer, INITIAL_STATES);
 
   function changeInput(e) {
     setInput((prevState) => e.target.value);
@@ -91,12 +87,12 @@ const SearchBar = () => {
         onClick={() => SearchMovie()}
         as={motion.button}
         whileHover={{
-          backgroundImage: "linear-gradient(270deg, #6C757D  0%, #A3A3A3 100%)",
+          backgroundImage: "linear-gradient(90deg, #6C757D  100%, #A3A3A3 100%)",
         }}
         whileTap={{ scale: 0.8 }}
         transition={{ duration: 0.2 }}
       >
-        {state.loading ? "Searching" : "Search"}
+        Search
       </SearchBtn>
     </InputContainer>
   );

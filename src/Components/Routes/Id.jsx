@@ -2,8 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import axios from "axios";
-import BannerMovieId from "../BannerMovieId";
-import Footer from "../Footer";
+import BannerMovieId from "../Banner/BannerMovieId";
+import Footer from "../Footer/Footer";
 import GetSimilar from "../GetSimilar";
 import GetCast from "../GetCast";
 
@@ -12,9 +12,11 @@ const Id = () => {
 
   const params = useParams();
 
+  const movieId = params.movieId
+
   useEffect(() => {
     function getMovieById() {
-      const url = `https://app-teste-weather.herokuapp.com/movie/id?movieid=${params.movieId}`;
+      const url = `https://app-teste-weather.herokuapp.com/movie/id?movieid=${movieId}`;
       axios
         .get(url)
         .then((res) => {
@@ -31,8 +33,8 @@ const Id = () => {
     <>
       <Header />
       <BannerMovieId movie={movie} />
-      <GetCast movieId={params.movieId} movie={movie} />
-      <GetSimilar movieId={params.movieId} />
+      <GetCast movieId={movieId} movie={movie} />
+      <GetSimilar movieId={movieId} />
       <Footer />
     </>
   );

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BoxTitle from "./BoxTitle";
+import BoxTitle from "./BoxTitle/BoxTitle";
 
 const Box = styled.div`
   display: flex;

@@ -2,13 +2,14 @@ import styled from "styled-components";
 import ProgressBar from "./ProgressBar";
 import { Link } from "react-router-dom";
 import { LINK_IMAGES } from "../../linkImages";
-import notfound from '../../assets/img/notfound110x160.png'
+import notfound from "../../assets/img/notfound110x160.png";
 
 const Container = styled.div`
   gap: 25px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding-bottom: 10px;
 `;
 
 const MovieImg = styled(Link).attrs(({ image }) => ({
@@ -33,9 +34,7 @@ const MovieTitle = styled.p`
 `;
 
 const MovieCard = ({ poster, vote, id, title }) => {
-
   const image = poster ? LINK_IMAGES.W500 + poster : notfound;
-
 
   return (
     <Container>

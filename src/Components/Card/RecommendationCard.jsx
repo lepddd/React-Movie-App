@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { LINK_IMAGES } from "../../linkImages";
-import notfound from '../../assets/img/notfound320x160.png'
+import notfound from "../../assets/img/notfound320x160.png";
 
 const BoxContainer = styled.div`
   display: flex;
@@ -10,15 +10,21 @@ const BoxContainer = styled.div`
   padding-bottom: 10px;
 `;
 
-const MovieImg = styled(Link).attrs(({ image }) => ({
-  style: {
-    backgroundImage: `url( ${image}  )`,
-  },
-}))`
+const BoxImg = styled(Link)`
   width: 320px;
   height: 180px;
+  overflow: hidden;
   border-radius: 4px;
-  background-size: cover;
+`;
+
+const MovieImg = styled.img`
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const BoxDetails = styled.div`
@@ -48,7 +54,9 @@ const RecommendationCard = ({ movie }) => {
 
   return (
     <BoxContainer>
-      <MovieImg image={image} to={`/id/${movie.id}`} />
+      <BoxImg to={`${movie.id}`}>
+        <MovieImg src={image} />
+      </BoxImg>
       <BoxDetails>
         <MovieName>{movie.title}</MovieName>
         <MovieVote>{`${(movie.vote_average * 10).toFixed(0)}%`}</MovieVote>

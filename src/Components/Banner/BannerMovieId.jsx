@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
-import MovieCardID from "./Card/MovieCardID";
-import { LINK_IMAGES } from "../linkImages";
+import MovieCardID from "../Card/MovieCardID";
+import { LINK_IMAGES } from "../../linkImages";
 
 const MovieImage = styled.div.attrs(({ image }) => ({
   style: {

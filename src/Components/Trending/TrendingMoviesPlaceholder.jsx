@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { LINK_IMAGES } from "../../linkImages";
+import { transition, animation } from "../../placeholderAnimation";
 
 const Trending = styled.div`
   width: 100%;
@@ -52,13 +51,11 @@ const TitleBox = styled.div`
   justify-content: space-between;
 `;
 
-const Title = styled.p`
-  font-weight: 700;
-  font-size: 20px;
-  color: #f4f4f4;
-  @media (max-width: 375px) {
-    font-size: 16px;
-  }
+const Title = styled.div`
+  width: 100%;
+  height: 24px;
+  background-color: #a4a4a4;
+  border-radius: 99px;
 `;
 
 const NoteBox = styled.div`
@@ -79,14 +76,10 @@ const MovieDesc = styled.div`
   max-width: 555px;
   font-weight: 700;
   font-size: 14px;
-  color: #f4f4f4;
+  background-color: #a4a4a4;
 `;
 
-const MovieCard = styled.div.attrs(({ image }) => ({
-  style: {
-    backgroundImage: `url( ${image}  )`,
-  },
-}))`
+const MovieCard = styled(motion.div)`
   background-size: cover;
   position: relative;
   background-size: cover;
@@ -101,81 +94,24 @@ const ArrowBtn = styled.div`
   color: #f4f4f4;
 `;
 
-const Image = styled(motion.img)`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 4px;
-`;
 
-const variants = {
-  enter: {
-    opacity: 0,
-  },
-  center: {
-    zIndex: 1,
-    opacity: 1,
-  },
-  exit: {
-    zIndex: 0,
-    opacity: 0,
-  },
-};
 
-const TrendingMovies = ({ movies }) => {
-  const [current, setCurrent] = useState(0);
-
-  let movie = movies?.[current];
-
-  function truncate(str, n) {
-    if (str) {
-      return str.length >= n ? str.substr(0, n) + "..." : str;
-    }
-  }
-
-  function prevImg() {
-    current > 0
-      ? setCurrent((prev) => --prev)
-      : setCurrent((prev) => (prev = movies.length - 1));
-  }
-
-  function nextImg() {
-    current < movies.length - 1
-      ? setCurrent((prev) => ++prev)
-      : setCurrent((prev) => (prev = 0));
-  }
-
-  useEffect(() => {
-    const interval = setInterval(() => nextImg(), 3000);
-    return () => clearInterval(interval);
-  });
-
+const TrendingMovies = () => {
   return (
     <Trending>
-      <Image
-        src={`${LINK_IMAGES.ORIGINAL + movie?.backdrop_path}`}
-        key={current}
-        variants={variants}
-        initial="enter"
-        animate="center"
-        exit="exit"
-        transition={{
-          opacity: { duration: 0.2 },
-        }}
-      />
       <BackdropCover>
-        <ArrowBtn onClick={() => prevImg()}>
+        <ArrowBtn>
           <Icon icon="ep:arrow-left" color="#f4f4f4" width="32" height="32" />
         </ArrowBtn>
         <MovieBox>
           <MovieCard
-            image={`${LINK_IMAGES.W500 + movie?.poster_path}`}
+            as={motion.div}
+            animate={animation}
+            transition={transition}
           />
           <MovieInfo>
             <TitleBox>
-              <Title>{movie?.title}</Title>
+              <Title></Title>
               <NoteBox>
                 <Icon
                   icon="bi:star-fill"
@@ -183,13 +119,13 @@ const TrendingMovies = ({ movies }) => {
                   width="16"
                   height="16"
                 />
-                <NoteAvg>{movie?.vote_average.toFixed(1)}</NoteAvg>
+                <NoteAvg>0.0</NoteAvg>
               </NoteBox>
             </TitleBox>
-            <MovieDesc>{truncate(movie?.overview, 200)}</MovieDesc>
+            <MovieDesc></MovieDesc>
           </MovieInfo>
         </MovieBox>
-        <ArrowBtn onClick={() => nextImg()}>
+        <ArrowBtn>
           <Icon icon="ep:arrow-right" color="#f4f4f4" width="32" height="32" />
         </ArrowBtn>
       </BackdropCover>

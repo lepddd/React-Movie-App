@@ -1,20 +1,17 @@
 export const INITIAL_STATES = {
   loading: false,
   error: false,
-  movies: [],
+  data: [],
 };
 
-export function movieReducer(state, action) {
-  let array;
+export function dataReducer(state, action) {
   switch (action.type) {
     case "FETCH_START":
       return { ...state, loading: true };
     case "FETCH_SUCCESS":
-      return { ...state, loading: false, movies: action.payload };
+      return { ...state, loading: false, data: action.payload };
     case "FETCH_ERROR":
-      return { ...state, error: true, movies: [] };
-    case "PUSH_MOVIES":
-      return { ...state, movies: [...state.movies, action.payload] };
+      return { ...state, error: true, data: [] };
     default:
       return state;
   }

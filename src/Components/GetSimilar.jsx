@@ -1,35 +1,19 @@
 import Container from "./Container";
-import BoxTitle from "./BoxTitle";
+import BoxTitle from "./BoxTitle/BoxTitle";
 import GradientBox from "./GradientBox";
 import RecommendationCard from "./Card/RecommendationCard";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { fetchData } from "../fetchData";
 
 const GetSimilar = ({ movieId }) => {
-  const [similar, setSimilar] = useState([]);
+  const url = `https://app-teste-weather.herokuapp.com/movie/similar?movieid=${movieId}`;
 
-  useEffect(() => {
-    function getSimilar() {
-      
-      const url = `https://app-teste-weather.herokuapp.com/movie/similar?movieid=${movieId}`;
-      axios
-        .get(url)
-        .then((res) => {
-          setSimilar((prevState) => (prevState = res.data.results));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-
-    getSimilar();
-  }, []);
+  const { loading, error, data } = fetchData(url);
 
   return (
     <Container>
       <BoxTitle title={"Recommendations"} />
       <GradientBox>
-        {similar.map((movie) => (
+        {data.results?.map((movie) => (
           <RecommendationCard movie={movie} key={movie.id} />
         ))}
       </GradientBox>

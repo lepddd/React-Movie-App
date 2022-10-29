@@ -1,46 +1,35 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useReducer } from "react";
 import Container from "./Container";
 import GradientBox from "./GradientBox";
-import BoxTitleLink from "./BoxTitleLink";
+import BoxTitleLink from "./BoxTitle/BoxTitleLink";
 import MovieCard from "./Card/MovieCard";
+import MovieCardPlaceholder from "./Card/MovieCardPlaceholder";
+import { fetchData } from "../fetchData";
 
 const GetMovies = ({ title }) => {
-  const [movies, setMovies] = useState([]);
-
   const endpoint = title.split(" ").join("_").toLowerCase();
 
-  const url = `https://hide-heroku-api.herokuapp.com/movie/${endpoint}`;
+  const url = `https://app-teste-weather.herokuapp.com/movie/${endpoint}`;
 
-  const fetchData = (url) => {
-    axios
-      .get(url)
-      .then((res) => {
-        const newMovies = res.data.results;
-        setMovies((prevState) => (prevState = newMovies));
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
+  const { loading, error, data } = fetchData(url);
 
-  useEffect(() => {
-    fetchData(url);
-  }, []);
+  const placeholder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
   return (
     <Container>
       <BoxTitleLink title={title} />
       <GradientBox>
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            poster={movie.poster_path}
-            vote={movie.vote_average}
-            id={movie.id}
-            title={movie.title}
-          />
-        ))}
+        {loading
+          ? placeholder.map((indice) => <MovieCardPlaceholder key={indice} />)
+          : data.results?.map((movie) => (
+              <MovieCard
+                key={movie.id}
+                poster={movie.poster_path}
+                vote={movie.vote_average}
+                id={movie.id}
+                title={movie.title}
+              />
+            ))}
       </GradientBox>
     </Container>
   );

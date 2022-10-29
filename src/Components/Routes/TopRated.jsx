@@ -1,7 +1,7 @@
 import Header from "../Header/Header";
 import Banner from "../Banner/Banner";
 import GetMovies from "../GetMovies";
-import Footer from "../Footer";
+import Footer from "../Footer/Footer";
 
 export const TopRated = () => {
   return (
