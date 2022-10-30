@@ -2,55 +2,44 @@ import BoxTitle from "../BoxTitle/BoxTitle";
 import Container from "../Container";
 import TrendingMovies from "./TrendingMovies";
 import TrendingMoviesPlaceholder from "./TrendingMoviesPlaceholder";
-import { fetchData } from "../../fetchData";
+import { fetchData } from "../../Fetchers/fetchData";
+import { useQuery } from "react-query";
 
 const TrendingContainer = () => {
   const url = `https://app-teste-weather.herokuapp.com/movie/trending`;
 
-  const { data, loading, error } = fetchData(url);
+  const { isError, isLoading, data, error } = useQuery(
+    ["trending"],
+    () => fetchData(url),
+    {
+      staleTime: 3000,
+    }
+  );
+
+  if (isLoading) {
+    console.log("Loading...");
+    return (
+      <Container>
+        <BoxTitle title={"Trending"} />
+        <TrendingMoviesPlaceholder />
+      </Container>
+    );
+  }
+
+  if (isError) {
+    console.log("Error: ", error);
+    return (
+      <div>
+        <h1>Error...</h1>
+      </div>
+    );
+  }
 
   return (
     <Container>
-      {loading ? (
-        <>
-          <BoxTitle title={"Trending"} />
-          <TrendingMoviesPlaceholder /> 
-        </>
-      ) : (
-        <>
-          <BoxTitle title={"Trending"} />
-          <TrendingMovies movies={data.results} />
-        </>
-      )}
+      <BoxTitle title={"Trending"} />
+      <TrendingMovies movies={data.results} />
     </Container>
   );
 };
 export default TrendingContainer;
-/* useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    const getData = (url) => {
-      dispatch({ type: ACTION_TYPES.FETCH_START });
-
-      axios
-        .get(url, { signal })
-        .then((res) => {
-          const movies = res.data.results;
-          dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: movies });
-        })
-        .catch((err) => {
-          if (err.name === "AbortError") {
-            console.log("Cancelled!!!");
-          } else {
-            dispatch({ type: ACTION_TYPES.FETCH_ERROR });
-          }
-        });
-      return state;
-    };
-    getData(url);
-
-    return () => {
-      controller.abort();
-    };
-  }, []); */

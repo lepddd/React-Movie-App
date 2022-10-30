@@ -1,6 +1,6 @@
 import Header from "../Header/Header";
 import Banner from "../Banner/Banner";
-import GetMovies from "../GetMovies";
+import Movies from "../Movies";
 import Footer from "../Footer/Footer";
 
 export const TopRated = () => {
@@ -8,7 +8,7 @@ export const TopRated = () => {
     <>
       <Header />
       <Banner />
-      <GetMovies title={"Top Rated"} />
+      <Movies title={"Top Rated"} />
       <Footer />
     </>
   );

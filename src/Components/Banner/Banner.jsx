@@ -1,10 +1,9 @@
-import { useEffect, useReducer } from "react";
-import { INITIAL_STATES, dataReducer } from "../../useMovies";
-import { ACTION_TYPES } from "../../movieActionTypes";
 import { LINK_IMAGES } from "../../linkImages";
 import styled from "styled-components";
 import SearchBar from "./SearchBar";
-import axios from "axios";
+import { fetchData } from "../../Fetchers/fetchData";
+
+import { useQuery } from "react-query";
 
 const ImgBanner = styled.div.attrs(({ image }) => ({
   style: {
@@ -42,56 +41,45 @@ const TitleBanner = styled.div`
 `;
 
 const Banner = () => {
-  const [state, dispatch] = useReducer(dataReducer, INITIAL_STATES);
-
-  const titleBanner = "Welcome.";  
-
-  const fetchUrl = `https://app-teste-weather.herokuapp.com/movie/popular`;
+  const titleBanner = "Welcome.";
+  const url = `https://app-teste-weather.herokuapp.com/movie/popular`;
+  const { isError, isLoading, data, error } = useQuery(
+    ["HomeBanner"],
+    () => fetchData(url),
+    {
+      staleTime: 3000,
+    }
+  );
 
   const randomNumber = (length) => {
     return Math.floor(Math.random() * length);
   };
 
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
+  if (isLoading) {
+    console.log("Loading...");
+    return (
+      <ImgBanner>
+        <BackdropBanner>
+          <TitleBanner>{titleBanner}</TitleBanner>
+          <SearchBar />
+        </BackdropBanner>
+      </ImgBanner>
+    );
+  }
 
-    const getData = (url) => {
-      dispatch({ type: ACTION_TYPES.FETCH_START });
-      axios
-        .get(url, { signal })
-        .then((res) => {
-          const random = randomNumber(res.data.results.length);
-          dispatch({
-            type: ACTION_TYPES.FETCH_SUCCESS,
-            payload: res.data.results[random],
-          });
-          return state.movies;
-        })
-        .catch((err) => {
-          if (err.name === "AbortError") {
-            console.log("Cancelled!!!");
-          } else {
-            dispatch({ type: ACTION_TYPES.FETCH_ERROR });
-          }
-        });
-    };
-    getData(fetchUrl);
+  if (isError) {
+    console.log("Error: ", error);
+    return (
+      <div>
+        <h1>Error...</h1>
+      </div>
+    );
+  }
 
-    return () => {
-      controller.abort();
-    };
-  }, []);
-
-  return state.loading ? (
-    <ImgBanner>
-      <BackdropBanner>
-        <TitleBanner>{titleBanner}</TitleBanner>
-        <SearchBar />
-      </BackdropBanner>
-    </ImgBanner>
-  ) : (
-    <ImgBanner image={state.data?.backdrop_path}>
+  return (
+    <ImgBanner
+      image={data.results[randomNumber(data.results.length)].backdrop_path}
+    >
       <BackdropBanner>
         <TitleBanner>{titleBanner}</TitleBanner>
         <SearchBar />

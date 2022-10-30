@@ -1,40 +1,49 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import Header from "../Header/Header";
-import axios from "axios";
 import BannerMovieId from "../Banner/BannerMovieId";
 import Footer from "../Footer/Footer";
-import GetSimilar from "../GetSimilar";
-import GetCast from "../GetCast";
+import Similar from "../Similar";
+import Casting from "../Casting";
+import { fetchData } from "../../Fetchers/fetchData";
+import { useQuery } from "react-query";
 
 const Id = () => {
-  const [movie, setMovie] = useState(null);
-
   const params = useParams();
+  const movieId = params.movieId;
+  const url = `https://app-teste-weather.herokuapp.com/movie/id?movieid=${movieId}`;
 
-  const movieId = params.movieId
-
-  useEffect(() => {
-    function getMovieById() {
-      const url = `https://app-teste-weather.herokuapp.com/movie/id?movieid=${movieId}`;
-      axios
-        .get(url)
-        .then((res) => {
-          setMovie((prevState) => (prevState = res.data));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+  const { isError, isLoading, data, error } = useQuery(
+    [movieId],
+    () => fetchData(url),
+    {
+      staleTime: 3000,
     }
-    getMovieById();
-  }, []);
+  );
+
+  if (isLoading) {
+    console.log("Loading...");
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
+  if (isError) {
+    console.log("Error: ", error);
+    return (
+      <div>
+        <h1>Error...</h1>
+      </div>
+    );
+  }
 
   return (
     <>
       <Header />
-      <BannerMovieId movie={movie} />
-      <GetCast movieId={movieId} movie={movie} />
-      <GetSimilar movieId={movieId} />
+      <BannerMovieId movie={data} />
+      <Casting movieId={movieId} movie={data} />
+      <Similar movieId={movieId} />
       <Footer />
     </>
   );

@@ -1,19 +1,18 @@
 import Header from "../Header/Header";
 import Banner from "../Banner/Banner";
-import GetMovies from "../GetMovies";
 import TrendingContainer from "../Trending/TrendingContainer";
 import Footer from "../Footer/Footer";
-
+import Movies from "../Movies";
 
 export const Home = () => {
   return (
     <>
       <Header />
       <Banner />
-      <GetMovies title={'Popular'}/>   
-      <GetMovies title={'Top Rated'}/>   
+      <Movies title={"Popular"} />
+      <Movies title={"Top Rated"} />
       <TrendingContainer />
-      <Footer title={'RMovies'}/>
+      <Footer title={"RMovies"} />
     </>
   );
 };

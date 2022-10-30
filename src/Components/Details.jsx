@@ -30,7 +30,7 @@ const Values = styled.p`
   color: #262626;
 `;
 
-const MovieDetails = ({ movie }) => {
+const Details = ({ movie }) => {
   function formatValue(num) {
     const formatNumber = new Intl.NumberFormat();
     return formatNumber.format(num);
@@ -70,4 +70,4 @@ const MovieDetails = ({ movie }) => {
   );
 };
 
-export default MovieDetails;
+export default Details;
