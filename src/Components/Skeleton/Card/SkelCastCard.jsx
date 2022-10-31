@@ -9,7 +9,7 @@ const Container = styled.div`
   gap: 10px;
   display: flex;
   flex-direction: column;
-  background-color: #eff6ff;//#eff6ff
+  background-color: #eff6ff;
 `;
 
 const MovieImg = styled(motion.div)`

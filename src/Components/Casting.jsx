@@ -6,7 +6,6 @@ import Details from "./Details";
 import styled from "styled-components";
 import { fetchData } from "../Fetchers/fetchData";
 import { useQuery } from "react-query";
-import SkelCasting from "./Skeleton/SkelCasting";
 
 const Box = styled.div`
   display: flex;
@@ -18,20 +17,14 @@ const Box = styled.div`
 const Casting = ({ movie, movieId }) => {
   const url = `https://app-teste-weather.herokuapp.com/movie/cast/id?movieid=${movieId}`;
 
-  const { isError, isLoading, data, error } = useQuery(
-    ["cast"],
-    () => fetchData(url),
-    {
-      staleTime: 3000,
-    }
-  );
+  const { data } = useQuery(["cast"], () => fetchData(url));
 
   return (
     <Box>
       <Container>
         <BoxTitle title={"Casting"} />
         <GradientBox>
-          {data.cast.map((cast) => (
+          {data?.cast.map((cast) => (
             <CastCard key={cast.id} cast={cast} />
           ))}
         </GradientBox>

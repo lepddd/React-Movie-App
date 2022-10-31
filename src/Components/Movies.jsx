@@ -20,7 +20,6 @@ const Movies = ({ title }) => {
   );
 
   if (isLoading) {
-    console.log("Loading...");
     return <SkelMovies title={title} />;
   }
 
@@ -40,7 +39,7 @@ const Movies = ({ title }) => {
         {data &&
           data.results.map((movie) => (
             <MovieCard
-              key={movie.id}
+              key={Math.floor(Math.random()*data.results.length)+movie.id}
               poster={movie.poster_path}
               vote={movie.vote_average}
               id={movie.id}

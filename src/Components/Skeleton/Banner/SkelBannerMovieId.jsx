@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {motion} from 'framer-motion'
-import {animation,transition,FadeAnimation} from '../../../placeholderAnimation'
+import { motion } from "framer-motion";
+import { animation, transition } from "../../../placeholderAnimation";
 
 const MovieImage = styled(motion.div)`
   position: relative;
@@ -14,7 +14,9 @@ const MovieImage = styled(motion.div)`
 `;
 
 const SkelBannerMovieId = () => {
-  return <MovieImage as={motion.div} animate={animation} transition={transition}/>;
+  return (
+    <MovieImage as={motion.div} animate={animation} transition={transition} />
+  );
 };
 
 export default SkelBannerMovieId;

@@ -1,7 +1,6 @@
 import BoxTitle from "../BoxTitle/BoxTitle";
 import Container from "../Container";
 import TrendingMovies from "./TrendingMovies";
-import TrendingMoviesPlaceholder from "./TrendingMoviesPlaceholder";
 import { fetchData } from "../../Fetchers/fetchData";
 import { useQuery } from "react-query";
 import SkelTrending from "../Skeleton/Trending/SkelTrending";
@@ -18,7 +17,6 @@ const TrendingContainer = () => {
   );
 
   if (isLoading) {
-    console.log("Loading...");
     return <SkelTrending />;
   }
 

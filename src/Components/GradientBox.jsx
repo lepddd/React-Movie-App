@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { motion, useAnimation } from "framer-motion";
 
 const Box = styled.div`
-  /* gap: 10px; */
   scroll-behavior: smooth;
   overflow: auto;
   display: flex;

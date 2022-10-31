@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { motion} from 'framer-motion'
-import {animation,transition} from '../../../placeholderAnimation'
+import { motion } from "framer-motion";
+import { animation, transition } from "../../../placeholderAnimation";
 
 const Container = styled.div`
   gap: 25px;
@@ -30,8 +30,8 @@ const MovieTitle = styled(motion.div)`
 const SkelMovieCard = () => {
   return (
     <Container>
-      <MovieImg as={motion.div} animate={animation} transition={transition}/>
-      <MovieTitle as={motion.div} animate={animation} transition={transition}/>
+      <MovieImg as={motion.div} animate={animation} transition={transition} />
+      <MovieTitle as={motion.div} animate={animation} transition={transition} />
     </Container>
   );
 };
