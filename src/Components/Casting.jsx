@@ -6,6 +6,7 @@ import Details from "./Details";
 import styled from "styled-components";
 import { fetchData } from "../Fetchers/fetchData";
 import { useQuery } from "react-query";
+import SkelCasting from "./Skeleton/SkelCasting";
 
 const Box = styled.div`
   display: flex;
@@ -24,24 +25,6 @@ const Casting = ({ movie, movieId }) => {
       staleTime: 3000,
     }
   );
-
-  if (isLoading) {
-    console.log("Loading...");
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
-  }
-
-  if (isError) {
-    console.log("Error: ", error);
-    return (
-      <div>
-        <h1>Error...</h1>
-      </div>
-    );
-  }
 
   return (
     <Box>

@@ -11,3 +11,7 @@ export const transition = {
   ease: "easeInOut",
   repeat: Infinity,
 };
+
+export const FadeAnimation = {
+  opacity: [1, 0, 1],
+};

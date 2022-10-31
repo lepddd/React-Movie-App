@@ -6,14 +6,20 @@ import SkelCastCard from "../Skeleton/Card/SkelCastCard";
 import SkelDetails from "../Skeleton/Details/SkelDetails";
 import SkelTrending from "../Skeleton/Trending/SkelTrending";
 import SkelCasting from "../Skeleton/SkelCasting";
-import SkelMovies from '../Skeleton/SkelMovies'
-import SkelSimilar from '../Skeleton/SkelSimilar'
+import SkelMovies from "../Skeleton/SkelMovies";
+import SkelSimilar from "../Skeleton/SkelSimilar";
+import SkelBannerMovieId from "../Skeleton/Banner/SkelBannerMovieId";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 export const Teste = () => {
   return (
     <>
-      <SkelCasting/>
-      <SkelSimilar/>
-    </>    
+      <Header />
+      <SkelBannerMovieId />
+      <SkelCasting />
+      <SkelSimilar />
+      <Footer />
+    </>
   );
 };

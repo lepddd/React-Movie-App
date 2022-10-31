@@ -6,31 +6,27 @@ import Similar from "../Similar";
 import Casting from "../Casting";
 import { fetchData } from "../../Fetchers/fetchData";
 import { useQuery } from "react-query";
+import SkelBannerMovieId from "../Skeleton/Banner/SkelBannerMovieId";
 import SkelCasting from "../Skeleton/SkelCasting";
-import SkelBanner from "../Skeleton/Banner/SkelBanner";
-import SkelSimilar from '../Skeleton/SkelSimilar'
+import SkelSimilar from "../Skeleton/SkelSimilar";
 
 const Id = () => {
   const params = useParams();
   const movieId = params.movieId;
   const url = `https://app-teste-weather.herokuapp.com/movie/id?movieid=${movieId}`;
 
-  const { isError, isLoading, data, error } = useQuery(
-    [movieId],
-    () => fetchData(url),
-    {
-      staleTime: 3000,
-    }
+  const { isError, isLoading, data, error } = useQuery([movieId], () =>
+    fetchData(url)
   );
 
-  if (isLoading) {
+  if (!isLoading) {
     console.log("Loading...");
     return (
       <>
         <Header />
-        <SkelBanner />
+        <SkelBannerMovieId />
         <SkelCasting />
-        <SkelSimilar />
+        <SkelSimilar  />
         <Footer />
       </>
     );
