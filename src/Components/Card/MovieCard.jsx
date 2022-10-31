@@ -9,7 +9,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-bottom: 10px;
+  padding: 5px;
 `;
 
 const MovieImg = styled(Link).attrs(({ image }) => ({

@@ -59,7 +59,7 @@ const ProgressBar = ({ value }) => {
       setColor(colors.high);
       return;
     }
-    if (num >= 3) {
+    if (num >= 4) {
       setColor(colors.medium);      
       return;
     }

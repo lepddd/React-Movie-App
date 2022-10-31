@@ -6,6 +6,9 @@ import Similar from "../Similar";
 import Casting from "../Casting";
 import { fetchData } from "../../Fetchers/fetchData";
 import { useQuery } from "react-query";
+import SkelCasting from "../Skeleton/SkelCasting";
+import SkelBanner from "../Skeleton/Banner/SkelBanner";
+import SkelSimilar from '../Skeleton/SkelSimilar'
 
 const Id = () => {
   const params = useParams();
@@ -23,9 +26,13 @@ const Id = () => {
   if (isLoading) {
     console.log("Loading...");
     return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
+      <>
+        <Header />
+        <SkelBanner />
+        <SkelCasting />
+        <SkelSimilar />
+        <Footer />
+      </>
     );
   }
 

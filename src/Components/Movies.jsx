@@ -4,6 +4,7 @@ import BoxTitleLink from "./BoxTitle/BoxTitleLink";
 import MovieCard from "./Card/MovieCard";
 import { fetchData } from "../Fetchers/fetchData";
 import { useQuery } from "react-query";
+import SkelMovies from "./Skeleton/SkelMovies";
 
 const Movies = ({ title }) => {
   const endpoint = title.split(" ").join("_").toLowerCase();
@@ -20,11 +21,7 @@ const Movies = ({ title }) => {
 
   if (isLoading) {
     console.log("Loading...");
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <SkelMovies title={title} />;
   }
 
   if (isError) {

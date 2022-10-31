@@ -4,6 +4,7 @@ import TrendingMovies from "./TrendingMovies";
 import TrendingMoviesPlaceholder from "./TrendingMoviesPlaceholder";
 import { fetchData } from "../../Fetchers/fetchData";
 import { useQuery } from "react-query";
+import SkelTrending from "../Skeleton/Trending/SkelTrending";
 
 const TrendingContainer = () => {
   const url = `https://app-teste-weather.herokuapp.com/movie/trending`;
@@ -18,12 +19,7 @@ const TrendingContainer = () => {
 
   if (isLoading) {
     console.log("Loading...");
-    return (
-      <Container>
-        <BoxTitle title={"Trending"} />
-        <TrendingMoviesPlaceholder />
-      </Container>
-    );
+    return <SkelTrending />;
   }
 
   if (isError) {

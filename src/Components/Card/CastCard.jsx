@@ -3,8 +3,7 @@ import notFound from "../../assets/img/notfound.png";
 import { LINK_IMAGES } from "../../linkImages";
 
 const Container = styled.div`
-  padding-bottom: 10px;
-  width: 165px;
+  padding: 5px;
   gap: 10px;
   display: flex;
   flex-direction: column;

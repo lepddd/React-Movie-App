@@ -2,8 +2,8 @@ import { LINK_IMAGES } from "../../linkImages";
 import styled from "styled-components";
 import SearchBar from "./SearchBar";
 import { fetchData } from "../../Fetchers/fetchData";
-
 import { useQuery } from "react-query";
+import SkelBanner from "../Skeleton/Banner/SkelBanner";
 
 const ImgBanner = styled.div.attrs(({ image }) => ({
   style: {
@@ -47,7 +47,7 @@ const Banner = () => {
     ["HomeBanner"],
     () => fetchData(url),
     {
-      staleTime: 3000,
+      staleTime: Infinity ,
     }
   );
 
@@ -56,19 +56,10 @@ const Banner = () => {
   };
 
   if (isLoading) {
-    console.log("Loading...");
-    return (
-      <ImgBanner>
-        <BackdropBanner>
-          <TitleBanner>{titleBanner}</TitleBanner>
-          <SearchBar />
-        </BackdropBanner>
-      </ImgBanner>
-    );
+    return <SkelBanner />;
   }
 
   if (isError) {
-    console.log("Error: ", error);
     return (
       <div>
         <h1>Error...</h1>

@@ -7,7 +7,7 @@ const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding-bottom: 10px;
+  padding:5px;
 `;
 
 const BoxImg = styled(Link)`
