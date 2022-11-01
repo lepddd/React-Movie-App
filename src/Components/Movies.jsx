@@ -15,7 +15,7 @@ const Movies = ({ title }) => {
     [title],
     () => fetchData(url),
     {
-      staleTime: 3000,
+      staleTime: Infinity,
     }
   );
 
@@ -39,7 +39,7 @@ const Movies = ({ title }) => {
         {data &&
           data.results.map((movie) => (
             <MovieCard
-              key={Math.floor(Math.random()*data.results.length)+movie.id}
+              key={movie.id}
               poster={movie.poster_path}
               vote={movie.vote_average}
               id={movie.id}

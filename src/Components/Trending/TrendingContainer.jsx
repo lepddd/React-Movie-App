@@ -12,7 +12,7 @@ const TrendingContainer = () => {
     ["trending"],
     () => fetchData(url),
     {
-      staleTime: 3000,
+      staleTime: Infinity,
     }
   );
 

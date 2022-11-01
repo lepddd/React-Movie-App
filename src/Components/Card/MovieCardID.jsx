@@ -5,6 +5,7 @@ const BoxContent = styled.div`
   position: relative;
   min-width: 220px;
   height: 320px;
+  min-height: 320px;
   border-radius: 4px;
 `;
 

@@ -5,15 +5,26 @@ const Box = styled.div`
   display: flex;
   gap: 20px;
   flex-direction: column;
+  align-items: center;
   margin-top: 20px;
 `;
 
 const BoxContent = styled.div`
   height: 100%;
-  width: 157px;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 20px;
+
   justify-content: space-between;
+  @media screen and (min-width: 450px) {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  @media screen and (min-width: 800px) {
+    flex-direction: column;
+    width: 157px;
+  }
 `;
 
 const Title = styled.p`

@@ -1,8 +1,8 @@
 import { LINK_IMAGES } from "../../linkImages";
-import styled from "styled-components";
-import SearchBar from "./SearchBar";
 import { fetchData } from "../../Fetchers/fetchData";
 import { useQuery } from "react-query";
+import styled from "styled-components";
+import SearchBar from "./SearchBar";
 import SkelBanner from "../Skeleton/Banner/SkelBanner";
 
 const ImgBanner = styled.div.attrs(({ image }) => ({
@@ -47,7 +47,7 @@ const Banner = () => {
     ["HomeBanner"],
     () => fetchData(url),
     {
-      staleTime: Infinity ,
+      staleTime: Infinity,
     }
   );
 

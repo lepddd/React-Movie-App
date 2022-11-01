@@ -11,10 +11,12 @@ import SkelSimilar from "../Skeleton/SkelSimilar";
 import SkelBannerMovieId from "../Skeleton/Banner/SkelBannerMovieId";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import TrailerBox from "../Modal/TrailerBox";
 
 export const Teste = () => {
   return (
     <>
+      <TrailerBox/>
       <Header />
       <SkelBannerMovieId />
       <SkelCasting />

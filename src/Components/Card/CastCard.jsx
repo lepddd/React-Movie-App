@@ -1,6 +1,6 @@
+import { LINK_IMAGES } from "../../linkImages";
 import styled from "styled-components";
 import notFound from "../../assets/img/notfound.png";
-import { LINK_IMAGES } from "../../linkImages";
 
 const Container = styled.div`
   padding: 5px;
