@@ -5,8 +5,9 @@ import MovieCard from "./Card/MovieCard";
 import { fetchData } from "../Fetchers/fetchData";
 import { useQuery } from "react-query";
 import SkelMovies from "./Skeleton/SkelMovies";
+import BoxTitle from "./BoxTitle/BoxTitle";
 
-const Movies = ({ title }) => {
+const Movies = ({ title, more = false }) => {
   const endpoint = title.split(" ").join("_").toLowerCase();
 
   const url = `https://app-teste-weather.herokuapp.com/movie/${endpoint}`;
@@ -34,7 +35,7 @@ const Movies = ({ title }) => {
 
   return (
     <Container>
-      <BoxTitleLink title={title} />
+      {more ? <BoxTitleLink title={title} /> : <BoxTitle title={title} />}
       <GradientBox>
         {data &&
           data.results.map((movie) => (

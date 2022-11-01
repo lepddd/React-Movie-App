@@ -1,6 +1,6 @@
 import Header from "../Header/Header";
 import Banner from "../Banner/Banner";
-import Movies from "../Movies";
+import Gallery from "../Gallery";
 import Footer from "../Footer/Footer";
 
 export const TopRated = () => {
@@ -8,7 +8,7 @@ export const TopRated = () => {
     <>
       <Header />
       <Banner />
-      <Movies title={"Top Rated"} />
+      <Gallery title={"Top Rated"}/>
       <Footer />
     </>
   );

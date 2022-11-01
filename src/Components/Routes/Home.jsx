@@ -9,8 +9,8 @@ export const Home = () => {
     <>
       <Header />
       <Banner />
-      <Movies title={"Popular"} />
-      <Movies title={"Top Rated"} />
+      <Movies title={"Popular"} more={true}/>
+      <Movies title={"Top Rated"} more={true}/>
       <TrendingContainer />
       <Footer title={"RMovies"} />
     </>

@@ -1,14 +1,14 @@
 import Header from "../Header/Header";
 import Banner from "../Banner/Banner";
-import Movies from "../Movies";
 import Footer from "../Footer/Footer";
+import Gallery from "../Gallery";
 
 export const Popular = () => {
   return (
     <>
       <Header />
       <Banner />
-      <Movies title={"Popular"} />
+      <Gallery title={'Popular'}/>
       <Footer />
     </>
   );
