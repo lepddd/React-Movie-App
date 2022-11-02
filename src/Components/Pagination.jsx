@@ -18,9 +18,9 @@ const Number = styled.div`
   font-size: 12px;
   padding: 0 10px;
   line-height: 25px;
-  border: 1px solid #4338ca;
+  border: 1px solid #262626;
   border-right: none;
-  background-color: ${(props) => (props.current ? "#4338CA" : "#EFF6FF")};
+  background-color: ${(props) => (props.current ? "#262626" : "#EFF6FF")};
   color: ${(props) => (props.current ? "#F4F4F4" : "#27272A")};
   &:first-child {
     border-radius: 4px 0 0 4px;
@@ -28,7 +28,7 @@ const Number = styled.div`
   }
   &:last-child {
     border-radius: 0px 4px 4px 0;
-    border: 1px solid #4338ca;
+    border: 1px solid #262626;
   }
 `;
 
@@ -37,7 +37,7 @@ const StyledButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #4338ca;
+  background: #262626;
   border-radius: 4px;
   cursor: pointer;
   outline: none;
@@ -64,7 +64,6 @@ const Pagination = ({ currentPage, maxPages, nextPage, prevPage }) => {
     if (numbers[numbers.length - 1] < maxPages) {
       array.shift();
       array.push(numbers[numbers.length - 1] + 1);
-      console.log(numbers);
       nextPage();
       setNumbers([...array]);
     }
@@ -76,7 +75,6 @@ const Pagination = ({ currentPage, maxPages, nextPage, prevPage }) => {
     if (numbers[0] > 1) {
       array.pop();
       array.unshift(numbers[0] - 1);
-      console.log(numbers);
       prevPage();
       setNumbers([...array]);
     }
