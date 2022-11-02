@@ -6,6 +6,7 @@ import notfound from "../../assets/img/notfound110x160.png";
 
 const Container = styled.div`
   gap: 25px;
+  height: 240px;
   display: flex;
   align-items: center;
   flex-direction: column;

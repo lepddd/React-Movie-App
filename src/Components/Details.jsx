@@ -5,7 +5,6 @@ const Box = styled.div`
   display: flex;
   gap: 20px;
   flex-direction: column;
-  align-items: center;
   margin-top: 20px;
 `;
 
@@ -32,6 +31,10 @@ const Title = styled.p`
   font-size: 16px;
   line-height: 19px;
   color: #262626;
+  text-align: center;
+  @media screen and (min-width: 800px) {
+    text-align: left;
+  }
 `;
 
 const Values = styled.p`
@@ -39,6 +42,10 @@ const Values = styled.p`
   font-size: 16px;
   line-height: 19px;
   color: #262626;
+  text-align: center;
+  @media screen and (min-width: 800px) {
+    text-align: left;
+  }
 `;
 
 const Details = ({ movie }) => {

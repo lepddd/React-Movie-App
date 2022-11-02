@@ -23,4 +23,3 @@ const Similar = ({ movieId }) => {
 };
 
 export default Similar;
-/*  */

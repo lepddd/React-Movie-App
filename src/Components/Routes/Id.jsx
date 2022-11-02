@@ -19,7 +19,7 @@ const Id = () => {
   const [isActive, setIsActive] = useState(false);
   const params = useParams();
   const movieId = params.movieId;
-  const url = `https://app-teste-weather.herokuapp.com/movie/id?movieid=${movieId}`;  
+  const url = `https://app-teste-weather.herokuapp.com/movie/id?movieid=${movieId}`;
 
   const queryCache = new QueryCache();
 
@@ -27,7 +27,7 @@ const Id = () => {
 
   const { isError, isLoading, data, error } = useQuery([movieId], () =>
     fetchData(url)
-  ); 
+  );
 
   if (isLoading) {
     return (
@@ -51,18 +51,23 @@ const Id = () => {
   }
 
   function closeModal() {
-    setIsActive(false)
+    setIsActive(false);
   }
 
   function openModal() {
-    setIsActive(true)
+    setIsActive(true);
+    window.scrollTo(0, 0);
   }
 
   return (
     <div style={{ position: "relative" }}>
-      <TrailerBox isActive={isActive} onClick={() => closeModal()} movieId={movieId}/>
+      <TrailerBox
+        isActive={isActive}
+        onClick={() => closeModal()}
+        movieId={movieId}
+      />
       <Header />
-      <BannerMovieId movie={data} onClick={()=> openModal()}/>
+      <BannerMovieId movie={data} onClick={() => openModal()} />
       <Casting movieId={movieId} movie={data} />
       <Similar movieId={movieId} />
       <Footer />

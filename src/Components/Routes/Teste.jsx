@@ -13,15 +13,14 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import TrailerBox from "../Modal/TrailerBox";
 
+
 export const Teste = () => {
-  return (
-    <>
-      <TrailerBox/>
+  return (<h1>Teste Page</h1>
+  );
+};
+/* <TrailerBox/>
       <Header />
       <SkelBannerMovieId />
       <SkelCasting />
       <SkelSimilar />
-      <Footer />
-    </>
-  );
-};
+      <Footer /> */
