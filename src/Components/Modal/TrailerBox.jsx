@@ -1,6 +1,6 @@
 import { fetchData } from "../../Fetchers/fetchData";
-import { useQuery } from "react-query";
-import { useRef } from "react";
+import { isError, useQuery } from "react-query";
+import { useEffect, useRef, useState } from "react";
 
 import { Icon } from "@iconify/react";
 
@@ -56,17 +56,19 @@ const TrailerBox = ({ isActive, movieId, onClick }) => {
 
   const url = `https://app-teste-weather.herokuapp.com/movie/trailer/id?movieid=${movieId}`;
 
-  const { data } = useQuery(["Trailer"], () =>
-    fetchData(url)
-  );
+  const { data } = useQuery(["Trailer"], () => fetchData(url));
 
-  const movieTrailer = data?.results.filter(
-    (movie) => movie.type === "Trailer"
-  )[0].key;
+  function getMovieTrailer() {
+    if (data?.results[0]) {
+      return data?.results.filter((movie) => movie.type === "Trailer")[0].key;
+    } else {
+      return "videoNotFound";
+    }
+  }
 
   function handleClick() {
     playerRef.current.internalPlayer.stopVideo();
-    onClick(); 
+    onClick();
   }
 
   return (
@@ -84,7 +86,7 @@ const TrailerBox = ({ isActive, movieId, onClick }) => {
       <VideoBox>
         <YouTube
           ref={playerRef}
-          videoId={movieTrailer}
+          videoId={getMovieTrailer()}
           opts={{ width: 100 + "%", height: "320px" }}
         />
       </VideoBox>

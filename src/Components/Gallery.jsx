@@ -68,8 +68,7 @@ const Gallery = ({ title }) => {
             <Pagination
               currentPage={page}
               maxPages={data.total_pages}
-              nextPage={() => nextPage()}
-              prevPage={() => prevPage()}
+              toPage = {(e)=> setPage(e)}
             />
           </div>
         </Container>

@@ -15,7 +15,15 @@ import TrailerBox from "../Modal/TrailerBox";
 
 
 export const Teste = () => {
-  return (<h1>Teste Page</h1>
+  return (
+    <>
+      <TrailerBox />
+      <Header />
+      <SkelBannerMovieId />
+      <SkelCasting />
+      <SkelSimilar />
+      <Footer />
+    </>
   );
 };
 /* <TrailerBox/>
